@@ -8,7 +8,12 @@ pipeline {
         }
                stage ('verfication') {
             steps {
-                sh ''' ls -lrt'''
+                sh ''' 
+
+		ls -lrt
+		echo "Running on ${env.BRANCH_NAME}"
+
+'''
             }
         }
         stage ('build'){
