@@ -6,7 +6,7 @@
 <h1>Congratulations!</h1>
 <img src="logo.PNG">
 
-<h2>You have successfully Deployed App!</h2>
+<h2>You have successfully Deployed Hello App!</h2>
 
 
 
