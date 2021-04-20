@@ -9,7 +9,7 @@ pipeline {
                stage ('verfication') {
             steps {
                 sh ''' 
-		echo "===========Working with WEBHOOKS============"
+		  ls -lrt
 		'''
             }
         }
