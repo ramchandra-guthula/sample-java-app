@@ -1,0 +1,10 @@
+node {
+  stage('SCM') {
+    git 'https://github.com/ramchandra-guthula/sample-java-app.git'
+  }
+  stage('SonarQube analysis') {
+  withSonarQubeEnv(credentialsId: 'sonar_scanner_API') {
+   sh 'mvn clean install sonar:sonar'
+    }
+  }
+}
