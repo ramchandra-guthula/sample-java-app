@@ -4,7 +4,18 @@ node {
   }
   stage('SonarQube analysis') {
   withSonarQubeEnv(credentialsId: 'sonar_scanner_API') {
-   sh 'mvn clean install sonar:sonar'
+   sh '''
+   source ~/.bash_profile
+   mvn clean install sonar:sonar
+   '''
+    }
+  }
+  
+  stage("Quality Gate"){
+  timeout(time: 1, unit: 'HOURS') { // Just in case something goes wrong, pipeline will be killed after a timeout
+    def qgate = waitForQualityGate() // Reuse taskId previously collected by withSonarQubeEnv
+    if (qgate.status != 'OK') {
+      error "Pipeline aborted due to quality gate failure: ${qg.status}"
     }
   }
 }
