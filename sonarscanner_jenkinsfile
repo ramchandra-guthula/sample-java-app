@@ -15,7 +15,7 @@ node {
   timeout(time: 1, unit: 'HOURS') { // Just in case something goes wrong, pipeline will be killed after a timeout
     def qgate = waitForQualityGate() // Reuse taskId previously collected by withSonarQubeEnv
     if (qgate.status != 'OK') {
-      error "Pipeline aborted due to quality gate failure: ${qg.status}"
+      error "Pipeline aborted due to quality gate failure: ${qgate.status}"
     }
   }
 }
