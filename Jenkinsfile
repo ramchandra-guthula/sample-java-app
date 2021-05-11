@@ -33,7 +33,7 @@ pipeline {
 		   dir("$WORKSPACE/ec2_tomcat/") { 
 		      	 ansiColor('xterm'){ // We need to install ansiColour plugin to use this ansiColour
 				  ansiblePlaybook credentialsId: 'devops_ssh_key', installation: 'ansible-2.9', playbook: '$WORKSPACE/ec2_tomcat/site.yaml'
-				 currentbuild.displayname = "my-app"
+				 currentBuild.displayName = "my-app"
                            }
 		          }
 			}
