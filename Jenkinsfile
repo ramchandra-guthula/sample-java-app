@@ -9,7 +9,7 @@ pipeline {
         stage ('verfication') {
             steps {
                 sh ''' 
-		ls -lrt
+		ls -lrt $WORKSPACE
                 '''
             }
         }
