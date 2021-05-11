@@ -9,8 +9,8 @@ pipeline {
         stage ('verfication') {
             steps {
                 sh ''' 
-					ls -lrt
-				'''
+		ls -lrt
+                '''
             }
         }
         stage ('build'){
