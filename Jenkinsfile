@@ -31,10 +31,13 @@ pipeline {
 	     steps {
 		script {
 		   dir("$WORKSPACE/ec2_tomcat/") {
+	              ansiColour('xterm') {
 		        sh '''
 			  ansiblePlaybook credentialsId: 'devops_ssh_key', installation: 'ansible-2.9', playbook: '$WORKSPACE/ec2_tomcat/site.yaml'
+			  currentbuild.displayname = "my-app"
 			'''
                            }
+		          }
 			}
 	          }	
 	   }
