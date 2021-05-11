@@ -15,19 +15,19 @@ pipeline {
         }
         stage ('build'){
             tools {
-                maven 'maven 3.5.3'
+                maven 'maven-3.8.1'
                 }
             steps {
                 sh " mvn clean install"
             }
         }
-	stage('Clone_ansible_playbook') {
+	stage('Get Ansible Playbook') {
 	     steps {
 		git branch: 'main', credentialsId: 'ram github credentials', url: 'https://github.com/ramchandra-guthula/ansible_practice.git'
 		    }
 		}
 		
-	stage('Deploy') {
+	stage('Deploy WAR file') {
 	     steps {
 		script {
 		   dir("$WORKSPACE/ec2_tomcat/") {
