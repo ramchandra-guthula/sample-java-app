@@ -6,11 +6,11 @@ pipeline {
           git credentialsId: 'ram github credentials', url: 'https://github.com/ramchandra-guthula/sample-java-app.git'
           }
         }
-               stage ('verfication') {
+        stage ('verfication') {
             steps {
                 sh ''' 
-		  ls -lrt
-		'''
+					ls -lrt
+				'''
             }
         }
         stage ('build'){
@@ -21,27 +21,27 @@ pipeline {
                 sh " mvn clean install"
             }
         }
-		stage('Clone_ansible_playbook') {
-		    steps {
-		
+	stage('Clone_ansible_playbook') {
+	     steps {
 		git branch: 'main', credentialsId: 'ram github credentials', url: 'https://github.com/ramchandra-guthula/ansible_practice.git'
 		    }
 		}
 		
-		stage('Deploy') {
-		    steps {
+	stage('Deploy') {
+	     steps {
+		script {
+		   dir("$WORKSPACE/ec2_tomcat/") {
 		        sh '''
-		cp $WORKSPACE/ec2_tomcat/ansible.cfg .
-		chmod 400 $WORKSPACE/ec2_tomcat/devops.pem
-		ansible-playbook --private-key $WORKSPACE/ec2_tomcat/devops.pem $WORKSPACE/ec2_tomcat/site.yaml
-		'''
+			  ansiblePlaybook credentialsId: 'devops_ssh_key', installation: 'ansible-2.9', playbook: '$WORKSPACE/ec2_tomcat/site.yaml'
+			'''
+                           }
+			}
+	          }	
+	   }
+	stage ('Clean workspace'){
+	      steps {
+		  cleanWs()
 		    }
-		
-		}
-		stage ('Clean workspace'){
-		    steps {
-		    cleanWs()
-		    }
-		}
-          }
+	        }
+        }
 }
