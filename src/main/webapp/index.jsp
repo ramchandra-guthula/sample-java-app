@@ -15,7 +15,7 @@
 </p>
 
 <p>
-    Stop the instance after your work:<br/>
+   <br>Stop the instance after your work:<br/>
 </p>
 
 <h2 style="margin-top: 80px">Now it's your turn!</h2>
@@ -25,6 +25,6 @@
 <p>You can see some sample videos of mine here  <strong><a href="https://www.youtube.com/watch?v=Y1KJmkl8A4U&t=21s">VPC video</a></strong>,<br/> Cheer up.</p>
 
 
-<p>Happy Learning .</p>
+<p><strong>Happy Learning!</strong></p>
 <p><strong>Enjoy DevOps!</strong></p>
 </body>
