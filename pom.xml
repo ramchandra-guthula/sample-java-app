@@ -4,7 +4,7 @@
     <groupId>com.amigostechs</groupId>
     <artifactId>hello</artifactId>
     <packaging>war</packaging>
-    <version>1.0</version>
+    <version>2.0</version>
     <name>hello</name>
     <url>https://github.com/ramchandra-guthula/sample-java-app.git</url>
     <dependencies>
