@@ -3,7 +3,7 @@ node {
     git 'https://github.com/ramchandra-guthula/sample-java-app.git'
   }
   stage('SonarQube analysis') {
-  withSonarQubeEnv(credentialsId: '	sonar-token') {
+  withSonarQubeEnv(credentialsId: 'sonar-token') {
    sh '''
    source ~/.bash_profile
    mvn clean install sonar:sonar
