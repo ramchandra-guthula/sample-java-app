@@ -1,0 +1,28 @@
+pipeline {
+    agent any
+    stages {
+        stage('SCM') {
+            steps {
+                git url: 'https://github.com/ramchandra-guthula/sample-java-app.git'
+            }
+        }
+
+        stage('build && SonarQube analysis') {
+            steps {
+                withSonarQubeEnv('sonar-8.3') { // Use the sonar server configuration name not scanner
+                    // Optionally use a Maven environment you've configured already
+                        sh 'mvn clean package sonar:sonar'
+                }
+            }
+        }
+        stage("Quality Gate") {
+            steps {
+                timeout(time: 1, unit: 'HOURS') {
+                    // Parameter indicates whether to set pipeline to UNSTABLE if Quality Gate fails
+                    // true = set pipeline to UNSTABLE, false = don't
+                    waitForQualityGate abortPipeline: true
+                }
+            }
+        }
+    }
+}
