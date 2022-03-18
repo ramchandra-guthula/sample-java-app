@@ -5,7 +5,8 @@ pipeline {
     stages {
         stage ('Clone') {
             steps {
-                git credentialsId: 'ram github credentials', url: 'https://github.com/ramchandra-guthula/sample-java-app.git'
+                //git credentialsId: 'ram github credentials', url: 'https://github.com/ramchandra-guthula/sample-java-app.git'
+                git  branch: 'master', url: 'https://github.com/ramchandra-guthula/sample-java-app.git'
             }
         }
 
@@ -30,7 +31,7 @@ pipeline {
             steps {
                 // We are getting anisble scripts to create an Instance and deploy the war file to tomcat
                 // We can even add the files in the same repo by creatuing seperate folder instead of cloneing from a separate repo
-                git branch: 'main', credentialsId: 'ram github credentials', url: 'https://github.com/ramchandra-guthula/ansible_practice.git'
+                git branch: 'main',  url: 'https://github.com/ramchandra-guthula/ansible_practice.git'
             }
         }
 
@@ -39,9 +40,9 @@ pipeline {
                 script {
                    dir("$WORKSPACE/ec2_tomcat/") {  // This to excute below steps from the $WORKSPACE/ec2_tomcat directory
                          ansiColor('xterm'){ // We need to install ansiColour plugin to use this ansiColour
-                                 ansiblePlaybook credentialsId: 'devops_ssh_key', installation: 'ansible-2.9', playbook: '$WORKSPACE/ec2_tomcat/site.yaml'
+                                 ansiblePlaybook credentialsId: 'jenkins_slave_ssh_keys', installation: 'ansible-2.9', colorized: true, playbook: '$WORKSPACE/ec2_tomcat/site.yaml'
                                  // We need to install Ansible plugin and configure Ansible with out any executable, we must install ansible in local
-                                 currentBuild.displayName = "my-app"
+                             currentBuild.displayName = "# {BUILD_NUMBER}-java-app"
                                  currentBuild.description = "This is sample app"
                         }
                     }
