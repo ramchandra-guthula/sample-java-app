@@ -20,7 +20,7 @@ pipeline {
 
         stage ('Build Project') {
             tools {
-                    maven 'maven-3.8.1'
+                    maven 'maven-3.8'
             }
             steps {
                 sh " mvn clean install"
