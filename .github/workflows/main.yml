@@ -48,3 +48,8 @@ jobs:
       # Runs a set of commands using the runners shell
       - name: Maven build 
         run: mvn clean install 
+        
+      - name: Verify build 
+        run: | 
+          pwd
+          ls -lrt 
